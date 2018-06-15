@@ -13,14 +13,16 @@ A simple addon that uses the commandline version of [Instant Meshes]  to integra
   - Exports your object 
   - runs InstantMeshes with the specified settings / or opens the UI with your Mesh
   - imports the result and sets UVs and Materials
-  - hides the original Object.
+  - hides the original Object.  
+  
+**IMPORTANT:** when using the UI you have to save your mesh as **%TEMP%\out.obj** (or whatever your temp dir is in Linux/Mac)
 
 ##### Installation instructions:
 Download the original Instant Meshes program (binaries or build yourself)
 Download InstantMeshesRemesh.py from my github repo and put it into your addons folder
-Activate it inside Blender and set the filepath to the Instant Meshes executable
-![][remesh_addon]
-Now you should have a Instant Meshes Remesh command in the object menu
+Activate it inside Blender and set the filepath to the Instant Meshes executable  
+![][remesh_addon]  
+Now you should have a Instant Meshes Remesh command in the object menu  
 ![][remesh_menu]
 
 
