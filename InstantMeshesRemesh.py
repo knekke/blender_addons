@@ -158,7 +158,7 @@ class InstantMeshesRemesh(bpy.types.Operator):
         mesh.hide = True
         mesh.hide_render = True
         imported_mesh.select = False
-
+        os.remove(output)
         return {'FINISHED'}
 
 
@@ -171,7 +171,11 @@ def register():
     bpy.utils.register_class(InstantMeshesRemeshBatch)
     bpy.utils.register_class(InstantMeshesRemeshPrefs)
     bpy.types.VIEW3D_MT_object.append(menu_func)
-
+    try:
+        os.remove(os.path.join(tempfile.gettempdir(),'original.obj'))
+        os.remove(os.path.join(tempfile.gettempdir(),'out.obj'))
+    except:
+        pass
 
 def unregister():
     bpy.utils.unregister_class(InstantMeshesRemesh)
