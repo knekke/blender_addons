@@ -1,3 +1,11 @@
+# importOBJ_principledShader
+A customized obj importer for Blender, that creates a Principled BSDF Material. We use it for importing from 3DCoat, but it should work for other applications as well.
+
+A small example video:
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/R0hI1Ki9xsI/0.jpg)](https://www.youtube.com/watch?v=R0hI1Ki9xsI)
+
+
 # Match Transforms
 
 ##### What it does:
