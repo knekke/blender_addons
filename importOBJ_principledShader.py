@@ -65,10 +65,11 @@ def create_materials(matname, textures, objname):
     if 'Normal' in textures:
         nmapnode = nodes.new("ShaderNodeNormalMap")
         nmapnode.location = (-300,-300)
-        nmapnode.inputs[0].default_value = 0.5
+        nmapnode.inputs[0].default_value = 1
         texN = bpy.data.images.load(textures['Normal'], check_existing=True)
         texNmap = nodes.new("ShaderNodeTexImage")
         texNmap.color_space = 'NONE'
+        texN.use_alpha = False
         texNmap.location = (-500,-300)
         texNmap.name = 'Normal' 
         texNmap.label = 'Normal' 
@@ -144,15 +145,15 @@ def readObj(objfile):
     for matname in materials.keys():
         for i in os.listdir(dirname):
             for n in [matname, os.path.basename(objfile).split('.')[0]]:
-                if n+'_ao' in i:
+                print(n+'_metalness  --->  ' + i.lower())
+                if (n+'_ao').lower() in i.lower():
                     materials[matname]['ao'] = dirname + '\\' + i
-                if n+'_EmissiveColor' in i:
+                if (n+'_emissivecolor').lower() in i.lower():
                     materials[matname]['EmissiveColor'] = dirname + '\\' + i
-                if n+'_Metalness' in i:
+                if (n+'_metalness').lower() in i.lower():
                     materials[matname]['Metalness'] = dirname + '\\' + i
-                if n+'_Opacity' in i:
+                if (n+'_opacity').lower() in i.lower():
                     materials[matname]['Opacity'] = dirname + '\\' + i
-    #print(materials)
     return objs, materials
 
  
