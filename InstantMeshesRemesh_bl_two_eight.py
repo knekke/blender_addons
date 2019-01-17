@@ -131,7 +131,8 @@ class InstantMeshesRemesh(bpy.types.Operator):
         
         bpy.ops.import_scene.obj(filepath=output, 
                                 use_smooth_groups=False,
-                                use_image_search=False)
+                                use_image_search=False,
+                                axis_forward='Y', axis_up='Z')
         imported_mesh = bpy.context.selected_objects[0]
         imported_mesh.location = self.loc
         imported_mesh.rotation_euler = self.rot
