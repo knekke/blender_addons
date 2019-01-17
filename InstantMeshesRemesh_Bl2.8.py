@@ -16,7 +16,7 @@ import shutil
 class InstantMeshesRemeshPrefs(bpy.types.AddonPreferences):
     bl_idname = __name__
 
-    filepath = bpy.props.StringProperty(
+    filepath : bpy.props.StringProperty(
             name="Instant Meshes Executable",
             subtype='FILE_PATH',
             )
@@ -56,14 +56,14 @@ class InstantMeshesRemesh(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     exported = False
-    deterministic = bpy.props.BoolProperty(name="Deterministic (slower)", description="Prefer (slower) deterministic algorithms", default=False)
-    dominant = bpy.props.BoolProperty(name="Dominant", description="Generate a tri/quad dominant mesh instead of a pure tri/quad mesh", default=False)
-    intrinsic = bpy.props.BoolProperty(name="Intrinsic", description="Intrinsic mode (extrinsic is the default)", default=False)
-    boundaries = bpy.props.BoolProperty(name="Boundaries", description="Align to boundaries (only applies when the mesh is not closed)", default=False)
-    crease = bpy.props.IntProperty(name="Crease Degree", description="Dihedral angle threshold for creases", default=0, min=0, max=100)
-    verts = bpy.props.IntProperty(name="Vertex Count", description="Desired vertex count of the output mesh", default=2000, min=200, max=50000)
-    smooth = bpy.props.IntProperty(name="Smooth iterations", description="Number of smoothing & ray tracing reprojection steps (default: 2)", default=2, min=0, max=10)
-    openUI = bpy.props.BoolProperty(name="Open in InstantMeshes", description="Opens the selected object in Instant Meshes and imports the result when you are done.", default=False)
+    deterministic : bpy.props.BoolProperty(name="Deterministic (slower)", description="Prefer (slower) deterministic algorithms", default=False)
+    dominant : bpy.props.BoolProperty(name="Dominant", description="Generate a tri/quad dominant mesh instead of a pure tri/quad mesh", default=False)
+    intrinsic : bpy.props.BoolProperty(name="Intrinsic", description="Intrinsic mode (extrinsic is the default)", default=False)
+    boundaries : bpy.props.BoolProperty(name="Boundaries", description="Align to boundaries (only applies when the mesh is not closed)", default=False)
+    crease : bpy.props.IntProperty(name="Crease Degree", description="Dihedral angle threshold for creases", default=0, min=0, max=100)
+    verts : bpy.props.IntProperty(name="Vertex Count", description="Desired vertex count of the output mesh", default=2000, min=200, max=50000)
+    smooth : bpy.props.IntProperty(name="Smooth iterations", description="Number of smoothing & ray tracing reprojection steps (default: 2)", default=2, min=0, max=10)
+    openUI : bpy.props.BoolProperty(name="Open in InstantMeshes", description="Opens the selected object in Instant Meshes and imports the result when you are done.", default=False)
     
     loc = None
     rot = None
@@ -177,6 +177,7 @@ classes = (
 
 def register():
 	# add operator
+    from bpy.utils import register_class
     for c in classes:
         bpy.utils.register_class(c)
 
@@ -188,6 +189,7 @@ def register():
         pass
 
 def unregister():
+    from bpy.utils import unregister_class
     bpy.types.VIEW3D_MT_object.remove(menu_func)
 
     # remove operator and preferences
