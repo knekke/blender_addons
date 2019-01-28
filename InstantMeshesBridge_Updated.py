@@ -164,7 +164,7 @@ class InstantMeshesRemesh(bpy.types.Operator):
                                             layers_select_dst='ACTIVE', mix_mode='REPLACE', mix_factor=1.0)
             mesh.select_set(state= False)
             mesh.hide_viewport = True
-            mesh.hide_render = True
+            #mesh.hide_render = True
             imported_mesh.select_set(state= False)
             os.remove(output)
             return {'FINISHED'}
