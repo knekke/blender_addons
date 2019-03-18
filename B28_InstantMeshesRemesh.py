@@ -96,7 +96,7 @@ class InstantMeshesRemesh(bpy.types.Operator):
                                             axis_forward='-Z', axis_up='Y',
                                             use_selection=True, 
                                             use_mesh_modifiers=True, 
-                                            use_mesh_modifiers_render=False,
+                                            # use_mesh_modifiers_render=False, # Why isn't that working anymore?
                                             use_edges=True, 
                                             use_smooth_groups=False, 
                                             use_smooth_groups_bitflags=False, 
