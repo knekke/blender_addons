@@ -29,11 +29,11 @@ A simple addon that uses the commandline version of [Instant Meshes]  to integra
 
 ##### Installation instructions:
 
-- Download the original Instant Meshes program (binaries or build yourself)
-- Download InstantMeshesRemesh.py from my github repo and put it into your addons folder
-- Activate it inside Blender and set the filepath to the Instant Meshes executable  
+1. Download the original Instant Meshes program (binaries or build yourself)
+1. Download InstantMeshesRemesh.py from my github repo and put it into your addons folder
+1. Activate it inside Blender and set the filepath to the Instant Meshes executable  
 ![][remesh_addon]  
-- Now you should have a Instant Meshes Remesh command in the object menu  
+1. Now you should have a Instant Meshes Remesh command in the object menu  
 ![][remesh_menu]
 
 
