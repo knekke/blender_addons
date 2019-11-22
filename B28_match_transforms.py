@@ -1,15 +1,15 @@
+ 
 bl_info = {
     "name": "Match Transforms",
     "author": "knekke",
     "version": (1, 0),
-    "blender": (2, 80, 0),
-    "location": "Tools/Transform Panel",
-    "description": "Matches the transforms of selected objects to the active object",
+    "blender": (2, 81, 0),
+    "location": "View3D > UI > Item > Match Tools",
+    "description": "Match LRS",
     "warning": "",
     "wiki_url": "",
     "category": "Object",
     }
-
 
 import bpy
 
@@ -18,9 +18,10 @@ class MatchTransformsOperator(bpy.types.Operator):
     "Match Transforms - selected to active Objects"
     bl_idname = "object.match_transform"
     bl_label = "Match Transform"
-    location = bpy.props.BoolProperty()
-    rotation = bpy.props.BoolProperty()
-    scale = bpy.props.BoolProperty()
+    bl_options = {'REGISTER', 'UNDO'}
+    location : bpy.props.BoolProperty()
+    rotation : bpy.props.BoolProperty()
+    scale : bpy.props.BoolProperty()
 
     def execute(self, context):
         target = bpy.context.object
@@ -39,46 +40,59 @@ class MatchTransformsOperator(bpy.types.Operator):
         #bpy.context.view_layer.objects.active = target #bpy.context.selected_objects[-1]
         return {'FINISHED'}
 
+# -----------------
 
-def add_button(self, context):
-    layout = self.layout
-    col = layout.column()
-    col.label(text="Match selected to active")
+class MatchToolPanel(bpy.types.Panel):
+    """Creates a Panel in the scene context of the properties editor"""
+    bl_idname = "MATCH001_PT_objs"
+    bl_label = "Match Tools"
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_category = "Item"
 
-    row = col.row(align=True)
-    row.alignment = 'EXPAND'
-    row2 = col.row(align=True)
-    row2.alignment = 'EXPAND'
+    def draw(self, context):
+        layout = self.layout
 
-    butt = layout.operator("object.match_transform", text="All", text_ctxt="All")
-    butt.location = True
-    butt.rotation = True
-    butt.scale = True
+        scene = context.scene
 
-    buttl = layout.operator("object.match_transform", text="Loc")
-    buttl.location = True
-    buttl.rotation = False
-    buttl.scale = False
+        box = layout.box()
+        row = box.row()
+        row.label(text="Match Object Transforms:", icon = "LOOP_FORWARDS")
+        row = box.row()
 
-    buttr = layout.operator("object.match_transform", text="Rot")
-    buttr.location = False
-    buttr.rotation = True
-    buttr.scale = False
+        matchall = row.operator("object.match_transform", text="ALL", text_ctxt="ALL")
+        matchall.location = True
+        matchall.rotation = True
+        matchall.scale = True
 
-    butts = layout.operator("object.match_transform", text="Scl")
-    butts.location = False
-    butts.rotation = False
-    butts.scale = True
-
+        sub = box.row()
+        sub.scale_x = 1.0
+        loc = sub.operator("object.match_transform", text="LOC", text_ctxt="LOC")
+        loc.location = True
+        loc.rotation = False
+        loc.scale = False
+       
+        rot = sub.operator("object.match_transform", text="ROT", text_ctxt="ROT")
+        rot.location = False
+        rot.rotation = True
+        rot.scale = False
+       
+        scl = sub.operator("object.match_transform", text="SCL", text_ctxt="SCL")
+        scl.location = False
+        scl.rotation = False
+        scl.scale = True
+       
+#------------------
 
 def register():
+    bpy.utils.register_class(MatchToolPanel)
     bpy.utils.register_class(MatchTransformsOperator)
-    bpy.types.VIEW3D_PT_tools_active.append(add_button)
+
 
 
 def unregister():
+    bpy.utils.unregister_class(MatchToolPanel)
     bpy.utils.unregister_class(MatchTransformsOperator)
-    bpy.types.VIEW3D_PT_tools_active.remove(add_button)
 
 
 if __name__ == "__main__":
