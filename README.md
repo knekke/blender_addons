@@ -37,7 +37,7 @@ A simple addon that uses the commandline version of [Instant Meshes]  to integra
 ![][remesh_menu]
 
 
-[transforms]: <https://raw.githubusercontent.com/knekke/blender_addons/master/readme_img/matchtranforms.png>
+[transforms]: <https://raw.githubusercontent.com/knekke/blender_addons/master/readme_img/matchtransforms.png>
 [remesh_py]: <https://raw.githubusercontent.com/knekke/blender_addons/master/InstantMeshesRemesh.py>
 [remesh_addon]: <https://github.com/knekke/blender_addons/blob/master/readme_img/remesh_installation.png?raw=true>
 [remesh_menu]: <https://github.com/knekke/blender_addons/blob/master/readme_img/remesh_menu.png?raw=true>
